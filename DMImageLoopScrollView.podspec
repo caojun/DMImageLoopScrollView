@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "DMImageLoopScrollView"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = ""
 
   s.description  = <<-DESC
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/caojun/DMImageLoopScrollView.git", :tag => "0.0.2" }
+  s.source       = { :git => "https://github.com/caojun/DMImageLoopScrollView.git", :tag => s.version.to_s }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

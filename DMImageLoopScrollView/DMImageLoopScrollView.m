@@ -322,12 +322,15 @@ static inline CGFloat viewHeight(UIView *view)
 - (void)tap:(UITapGestureRecognizer*)tap
 {
     UIImageView *imageView = (UIImageView *)tap.view;
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(imageLoopScrollView:didClickIndex:)])
+
+    if (tap.state == UIGestureRecognizerStateEnded)
     {
-        NSInteger index = imageView.tag - kImageViewTagBeginID;
-        
-        [self.delegate imageLoopScrollView:self didClickIndex:index];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(imageLoopScrollView:didClickIndex:)])
+        {
+            NSInteger index = imageView.tag - kImageViewTagBeginID;
+            
+            [self.delegate imageLoopScrollView:self didClickIndex:index];
+        }
     }
 }
 
