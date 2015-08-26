@@ -57,7 +57,6 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
 
 
 #pragma mark - DMImageLoopScrollView
-IB_DESIGNABLE
 @interface DMImageLoopScrollView : UIView
 
 @property (nonatomic, weak) IBOutlet id<DMImageLoopScrollViewDelegate> delegate;
