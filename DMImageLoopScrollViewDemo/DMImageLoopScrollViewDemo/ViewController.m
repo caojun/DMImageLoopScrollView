@@ -40,6 +40,9 @@
     self.m_loopView.imageLoopPageControlAlignment = DMImageLoopPageControlAlignmentLeft;
     self.m_loopView.titleColor = [UIColor orangeColor];
     self.m_loopView.imageLoopTitleHorAlignment = NSTextAlignmentRight;
+    self.m_loopView.imageViewContentMode = UIViewContentModeScaleAspectFit;
+    self.m_loopView.curPage = 2;
+    self.m_loopView.scrollTime = 0;
 }
 
 #pragma mark - DMImageLoopScrollViewDelegate
