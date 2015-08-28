@@ -90,6 +90,8 @@
 
 - (void)defaultSetting
 {
+    self.clipsToBounds = YES;
+    
     [self bottomBackgroundViewCreate];
     [self titleLabelCreate];
 }
