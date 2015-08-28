@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
 @property (nonatomic, strong) UIImage *titleBackgroundImage;
 
 /**
- *  滚动时间为秒, 默认3秒
+ *  滚动时间为秒, 默认3秒, < 0 表示不滚动
  */
 @property (nonatomic, assign) NSInteger scrollTime;
 
@@ -97,6 +97,16 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
  *  title 颜色
  */
 @property (nonatomic, strong) UIColor *titleColor;
+
+/**
+ *  当前页
+ */
+@property (nonatomic, assign) NSInteger curPage;
+
+/**
+ *  图片显示模式
+ */
+@property (nonatomic, assign) UIViewContentMode imageViewContentMode;
 
 /**
  *  控制页显示位置

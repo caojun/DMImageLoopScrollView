@@ -70,6 +70,7 @@ static inline CGFloat viewHeight(UIView *view)
 @implementation DMImageLoopScrollView
 
 @synthesize m_loopSubViewArray = _m_loopSubViewArray;
+@synthesize curPage = _curPage;
 
 #pragma mark - Life Cycle
 - (void)dealloc
@@ -229,7 +230,12 @@ static inline CGFloat viewHeight(UIView *view)
     
     self.m_scrollView.contentSize = CGSizeMake(self.m_loopSubViewArray.count * viewWidth(self), viewHeight(self));
     
-    CGFloat offsetX = (self.m_pageControl.currentPage + 1) * viewWidth(self);
+    CGFloat offsetX = 0;
+    if (self.m_loopSubViewArray.count > 1)
+    { // fix bug, 当图片数量大于1时才调整
+        offsetX = (self.m_pageControl.currentPage + 1) * viewWidth(self);
+    }
+    
     self.m_scrollView.contentOffset = (CGPoint){offsetX, 0};
 }
 
@@ -271,6 +277,7 @@ static inline CGFloat viewHeight(UIView *view)
             }
             
             DMImageLoopSubView *subView = [DMImageLoopSubView imageLoopSubViewWithImageParam:obj andTitle:title andTitleBackgroundImage:self.titleBackgroundImage andPlaceholdImage:self.placeholdImage];
+            subView.contentMode = self.imageViewContentMode;
             [self.m_loopSubViewArray addObject:subView];
             subView.titleColor = self.titleColor;
             subView.titleFont = self.titleFont;
@@ -293,6 +300,7 @@ static inline CGFloat viewHeight(UIView *view)
             DMImageLoopSubView *lastView = [self.m_loopSubViewArray lastObject];
             
             DMImageLoopSubView *insertFirstView = [DMImageLoopSubView imageLoopSubViewWithImageParam:firstView.imageParam andTitle:firstView.title andTitleBackgroundImage:firstView.titleBackgroundImage andPlaceholdImage:self.placeholdImage];
+            insertFirstView.contentMode = self.imageViewContentMode;
             insertFirstView.tag = firstView.tag;
             UITapGestureRecognizer *firstTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
             [insertFirstView addGestureRecognizer:firstTap];
@@ -302,6 +310,7 @@ static inline CGFloat viewHeight(UIView *view)
             insertFirstView.titleAlignment = self.imageLoopTitleHorAlignment;
             
             DMImageLoopSubView *insertLastView = [DMImageLoopSubView imageLoopSubViewWithImageParam:lastView.imageParam andTitle:lastView.title andTitleBackgroundImage:lastView.titleBackgroundImage andPlaceholdImage:self.placeholdImage];
+            insertLastView.contentMode = self.imageViewContentMode;
             insertLastView.tag = lastView.tag;
             UITapGestureRecognizer *lastTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
             [insertLastView addGestureRecognizer:lastTap];
@@ -539,5 +548,41 @@ static inline CGFloat viewHeight(UIView *view)
     return _m_loopSubViewArray;
 }
 
+- (void)setCurPage:(NSInteger)curPage
+{
+    _curPage = curPage;
+    
+    __block NSInteger tempID = curPage;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (tempID < self.imageParamArray.count)
+        {
+            NSInteger count = self.imageParamArray.count;
+            if (count > 1)
+            {
+                tempID++;
+            }
+            
+            CGFloat x = tempID * self.m_scrollView.contentSize.width;
+            CGPoint point = {x, 0};
+            [self.m_scrollView setContentOffset:point animated:YES];
+        }
+    });
+}
+
+- (NSInteger)curPage
+{
+    _curPage = self.m_pageControl.currentPage;
+    
+    return _curPage;
+}
+
+- (void)setImageViewContentMode:(UIViewContentMode)imageViewContentMode
+{
+    _imageViewContentMode = imageViewContentMode;
+    
+    [self.m_loopSubViewArray enumerateObjectsUsingBlock:^(DMImageLoopSubView *subView, NSUInteger idx, BOOL *stop) {
+        subView.contentMode = imageViewContentMode;
+    }];
+}
 
 @end
