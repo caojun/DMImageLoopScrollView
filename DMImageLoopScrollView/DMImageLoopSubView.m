@@ -184,6 +184,7 @@
         label.font = self.titleFont;
         label.textColor = self.titleColor;
         label.textAlignment = self.titleAlignment;
+        label.numberOfLines = 0;
         self.m_titleLabel = label;
     }
 }
