@@ -29,11 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DMImageLoopSubView : UIImageView
 
 /// 图片参数，UIImage 或者 NSURL
-@property (nonnull, nonatomic, strong) id imageParam;
-@property (nonnull,nonatomic, copy) NSString *title;
-@property (nonnull,nonatomic, strong) UIFont *titleFont;
-@property (nonnull,nonatomic, strong) UIColor *titleColor;
-@property (nonnull,nonatomic, strong) UIImage *titleBackgroundImage;
+@property (nullable, nonatomic, strong) id imageParam;
+@property (nullable,nonatomic, copy) NSString *title;
+@property (nullable,nonatomic, strong) UIFont *titleFont;
+@property (nullable,nonatomic, strong) UIColor *titleColor;
+@property (nullable,nonatomic, strong) UIImage *titleBackgroundImage;
 /// 文本对齐方式
 @property (nonatomic, assign) NSTextAlignment titleAlignment;
 /// 垂直对齐方式
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 + (instancetype)imageLopSubView;
-+ (instancetype)imageLoopSubViewWithImageParam:(nonnull id)imageParam andTitle:(nonnull NSString *)title andTitleBackgroundImage:(nonnull UIImage *)backgroundImage andPlaceholdImage:(nonnull UIImage *)placeholdImage;
++ (instancetype)imageLoopSubViewWithImageParam:(nullable id)imageParam andTitle:(nullable NSString *)title andTitleBackgroundImage:(nullable UIImage *)backgroundImage andPlaceholdImage:(nullable UIImage *)placeholdImage;
 
 @end
 

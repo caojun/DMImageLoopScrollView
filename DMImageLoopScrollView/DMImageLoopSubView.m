@@ -27,9 +27,9 @@
 
 @interface DMImageLoopSubView ()
 
-@property (nonnull, nonatomic, strong) UIImageView *m_bottomBackgroundView;
-@property (nonnull, nonatomic, strong) UILabel *m_titleLabel;
-@property (nonnull, nonatomic, strong) UIImage *m_placeholdImage;
+@property (nullable, nonatomic, strong) UIImageView *m_bottomBackgroundView;
+@property (nullable, nonatomic, strong) UILabel *m_titleLabel;
+@property (nullable, nonatomic, strong) UIImage *m_placeholdImage;
 
 @end
 
@@ -56,7 +56,7 @@
     return [[self alloc] init];
 }
 
-+ (instancetype)imageLoopSubViewWithImageParam:(nonnull id)imageParam andTitle:(nonnull NSString *)title andTitleBackgroundImage:(nonnull UIImage *)backgroundImage andPlaceholdImage:(nonnull UIImage *)placeholdImage
++ (instancetype)imageLoopSubViewWithImageParam:(nullable id)imageParam andTitle:(nullable NSString *)title andTitleBackgroundImage:(nullable UIImage *)backgroundImage andPlaceholdImage:(nullable UIImage *)placeholdImage
 {
     DMImageLoopSubView *subView = [self imageLopSubView];
     

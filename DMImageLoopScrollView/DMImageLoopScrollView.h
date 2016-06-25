@@ -66,9 +66,9 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
 /**
  *  占位图片
  */
-@property (nonnull, nonatomic, strong) UIImage *placeholderImage;
+@property (nullable, nonatomic, strong) UIImage *placeholderImage;
 
-@property (nonnull, nonatomic, strong) UIImage *titleBackgroundImage;
+@property (nullable, nonatomic, strong) UIImage *titleBackgroundImage;
 
 /**
  *  滚动时间为秒, 默认3秒, < 0 表示不滚动
@@ -78,7 +78,7 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
 /**
  *  imageArray 可存放UIImage / NSURL
  */
-@property (nonnull, nonatomic, strong) NSArray *imageParamArray;
+@property (nullable, nonatomic, strong) NSArray *imageParamArray;
 
 
 /**
@@ -89,16 +89,16 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
 /**
  *  图片 title array
  */
-@property (nonnull, nonatomic, strong) NSArray *titleArray;
+@property (nullable, nonatomic, strong) NSArray *titleArray;
 
 /**
  *  title 字体
  */
-@property (nonnull, nonatomic, strong) UIFont *titleFont;
+@property (nullable, nonatomic, strong) UIFont *titleFont;
 /**
  *  title 颜色
  */
-@property (nonnull, nonatomic, strong) UIColor *titleColor;
+@property (nullable, nonatomic, strong) UIColor *titleColor;
 
 /**
  *  当前页
