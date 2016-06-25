@@ -18,6 +18,7 @@
 		8534F6F11B341D7D00073762 /* DMImageLoopScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8534F6F01B341D7D00073762 /* DMImageLoopScrollView.m */; };
 		8534F6F41B3462ED00073762 /* DMImageLoopSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8534F6F31B3462ED00073762 /* DMImageLoopSubView.m */; };
 		8534F6F91B353AF700073762 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8534F6F81B353AF700073762 /* 1.jpg */; };
+		856A30E91D1E9447007FAAA8 /* title_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 856A30E81D1E9447007FAAA8 /* title_bg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		8534F6F21B3462ED00073762 /* DMImageLoopSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMImageLoopSubView.h; sourceTree = "<group>"; };
 		8534F6F31B3462ED00073762 /* DMImageLoopSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMImageLoopSubView.m; sourceTree = "<group>"; };
 		8534F6F81B353AF700073762 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		856A30E81D1E9447007FAAA8 /* title_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_bg.png; sourceTree = "<group>"; };
 		859FDB79A76CAEB1118F9B7E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 		8534F6C71B341D6C00073762 /* DMImageLoopScrollViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				856A30E81D1E9447007FAAA8 /* title_bg.png */,
 				8534F6CC1B341D6C00073762 /* AppDelegate.h */,
 				8534F6CD1B341D6C00073762 /* AppDelegate.m */,
 				8534F6CF1B341D6C00073762 /* ViewController.h */,
@@ -250,6 +253,7 @@
 				8534F6D41B341D6C00073762 /* Main.storyboard in Resources */,
 				8534F6F91B353AF700073762 /* 1.jpg in Resources */,
 				8534F6D91B341D6C00073762 /* LaunchScreen.xib in Resources */,
+				856A30E91D1E9447007FAAA8 /* title_bg.png in Resources */,
 				8534F6D61B341D6C00073762 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

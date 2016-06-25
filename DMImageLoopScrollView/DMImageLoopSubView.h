@@ -24,21 +24,27 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface DMImageLoopSubView : UIImageView
 
-/**
- *  图片参数，UIImage 或者 NSURL
- */
-@property (nonatomic, strong) id imageParam;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, strong) UIFont *titleFont;
-@property (nonatomic, strong) UIColor *titleColor;
-@property (nonatomic, strong) UIImage *titleBackgroundImage;
+/// 图片参数，UIImage 或者 NSURL
+@property (nonnull, nonatomic, strong) id imageParam;
+@property (nonnull,nonatomic, copy) NSString *title;
+@property (nonnull,nonatomic, strong) UIFont *titleFont;
+@property (nonnull,nonatomic, strong) UIColor *titleColor;
+@property (nonnull,nonatomic, strong) UIImage *titleBackgroundImage;
+/// 文本对齐方式
 @property (nonatomic, assign) NSTextAlignment titleAlignment;
+/// 垂直对齐方式
+@property (nonatomic, assign) UIControlContentVerticalAlignment titleVerticalAlignment;
+@property (nonatomic, assign) CGFloat titleHeight;
 
 
 + (instancetype)imageLopSubView;
-+ (instancetype)imageLoopSubViewWithImageParam:(id)imageParam andTitle:(NSString *)title andTitleBackgroundImage:(UIImage *)backgroundImage andPlaceholdImage:(UIImage *)placeholdImage;
-
++ (instancetype)imageLoopSubViewWithImageParam:(nonnull id)imageParam andTitle:(nonnull NSString *)title andTitleBackgroundImage:(nonnull UIImage *)backgroundImage andPlaceholdImage:(nonnull UIImage *)placeholdImage;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

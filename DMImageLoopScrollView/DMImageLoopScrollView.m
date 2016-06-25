@@ -80,6 +80,9 @@ static inline CGFloat viewHeight(UIView *view)
 
 - (void)defaultSetting
 {
+    _titleVerticalAlignment = UIControlContentVerticalAlignmentBottom;
+    _titleHeight = 30;
+    
     [self scrollViewCreate];
     [self pageControlCreate];
     
@@ -113,31 +116,36 @@ static inline CGFloat viewHeight(UIView *view)
     return [[self alloc] init];
 }
 
-+ (instancetype)imageLoopScrollViewWithImageParamArray:(NSArray *)array
-                                         andTitleArray:(NSArray *)titleArray
-                                     andPlaceholdImage:(UIImage *)placeholdImage;
++ (instancetype)imageLoopScrollViewWithImageParamArray:(nullable NSArray *)array
+                                         andTitleArray:(nullable NSArray *)titleArray
+                                   andPlaceholderImage:(nullable UIImage *)placeholderImage
 {
-    return [[self alloc] initWithImageParamArray:array andTitleArray:titleArray andPlaceholdImage:placeholdImage];
+    return [[self alloc] initWithImageParamArray:array
+                                   andTitleArray:titleArray
+                             andPlaceholderImage:placeholderImage];
 }
 
-- (instancetype)initWithImageParamArray:(NSArray *)array
-                          andTitleArray:(NSArray *)titleArray
-                      andPlaceholdImage:(UIImage *)placeholdImage;
+- (instancetype)initWithImageParamArray:(nullable NSArray *)array
+                          andTitleArray:(nullable NSArray *)titleArray
+                    andPlaceholderImage:(nullable UIImage *)placeholderImage
 {
-    return [self initWithFrame:CGRectZero andImageParamArray:array andTitleArray:titleArray andPlaceholdImage:placeholdImage];
+    return [self initWithFrame:CGRectZero
+            andImageParamArray:array
+                 andTitleArray:titleArray
+           andPlaceholderImage:placeholderImage];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
-           andImageParamArray:(NSArray *)array
-                andTitleArray:(NSArray *)titleArray
-            andPlaceholdImage:(UIImage *)placeholdImage;
+           andImageParamArray:(nullable NSArray *)array
+                andTitleArray:(nullable NSArray *)titleArray
+          andPlaceholderImage:(nullable UIImage *)placeholderImage
 {
     self = [super initWithFrame:frame];
     if (self)
     {
         [self defaultSetting];
         
-        _placeholdImage = placeholdImage;
+        _placeholderImage = placeholderImage;
         _imageParamArray = array;
         _titleArray = titleArray;
         
@@ -276,12 +284,14 @@ static inline CGFloat viewHeight(UIView *view)
                 title = self.titleArray[idx];
             }
             
-            DMImageLoopSubView *subView = [DMImageLoopSubView imageLoopSubViewWithImageParam:obj andTitle:title andTitleBackgroundImage:self.titleBackgroundImage andPlaceholdImage:self.placeholdImage];
+            DMImageLoopSubView *subView = [DMImageLoopSubView imageLoopSubViewWithImageParam:obj andTitle:title andTitleBackgroundImage:self.titleBackgroundImage andPlaceholdImage:self.placeholderImage];
             subView.contentMode = self.imageViewContentMode;
             [self.m_loopSubViewArray addObject:subView];
             subView.titleColor = self.titleColor;
             subView.titleFont = self.titleFont;
             subView.titleAlignment = self.imageLoopTitleHorAlignment;
+            subView.titleHeight = self.titleHeight;
+            subView.titleVerticalAlignment = self.titleVerticalAlignment;
             
             subView.tag = kImageViewTagBeginID + idx;
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
@@ -299,7 +309,7 @@ static inline CGFloat viewHeight(UIView *view)
             DMImageLoopSubView *firstView = [self.m_loopSubViewArray firstObject];
             DMImageLoopSubView *lastView = [self.m_loopSubViewArray lastObject];
             
-            DMImageLoopSubView *insertFirstView = [DMImageLoopSubView imageLoopSubViewWithImageParam:firstView.imageParam andTitle:firstView.title andTitleBackgroundImage:firstView.titleBackgroundImage andPlaceholdImage:self.placeholdImage];
+            DMImageLoopSubView *insertFirstView = [DMImageLoopSubView imageLoopSubViewWithImageParam:firstView.imageParam andTitle:firstView.title andTitleBackgroundImage:firstView.titleBackgroundImage andPlaceholdImage:self.placeholderImage];
             insertFirstView.contentMode = self.imageViewContentMode;
             insertFirstView.tag = firstView.tag;
             UITapGestureRecognizer *firstTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
@@ -308,8 +318,10 @@ static inline CGFloat viewHeight(UIView *view)
             insertFirstView.titleColor = self.titleColor;
             insertFirstView.titleFont = self.titleFont;
             insertFirstView.titleAlignment = self.imageLoopTitleHorAlignment;
+            insertFirstView.titleHeight = self.titleHeight;
+            insertFirstView.titleVerticalAlignment = self.titleVerticalAlignment;
             
-            DMImageLoopSubView *insertLastView = [DMImageLoopSubView imageLoopSubViewWithImageParam:lastView.imageParam andTitle:lastView.title andTitleBackgroundImage:lastView.titleBackgroundImage andPlaceholdImage:self.placeholdImage];
+            DMImageLoopSubView *insertLastView = [DMImageLoopSubView imageLoopSubViewWithImageParam:lastView.imageParam andTitle:lastView.title andTitleBackgroundImage:lastView.titleBackgroundImage andPlaceholdImage:self.placeholderImage];
             insertLastView.contentMode = self.imageViewContentMode;
             insertLastView.tag = lastView.tag;
             UITapGestureRecognizer *lastTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
@@ -318,6 +330,8 @@ static inline CGFloat viewHeight(UIView *view)
             insertLastView.titleColor = self.titleColor;
             insertLastView.titleFont = self.titleFont;
             insertLastView.titleAlignment = self.imageLoopTitleHorAlignment;
+            insertLastView.titleHeight = self.titleHeight;
+            insertLastView.titleVerticalAlignment = self.titleVerticalAlignment;
             
             [self.m_loopSubViewArray insertObject:insertLastView atIndex:0];
             [self.m_loopSubViewArray addObject:insertFirstView];
@@ -449,13 +463,13 @@ static inline CGFloat viewHeight(UIView *view)
     [self setNeedsLayout];
 }
 
-- (void)setImageParamArray:(NSArray *)imageParamArray
-             andTitleArray:(NSArray *)titleArray
-         andPlaceholdImage:(UIImage *)placeholdImage
+- (void)setImageParamArray:(nullable NSArray *)imageParamArray
+             andTitleArray:(nullable NSArray *)titleArray
+       andPlaceholderImage:(nullable UIImage *)placeholderImage
 {
     _imageParamArray = imageParamArray;
     _titleArray = titleArray;
-    _placeholdImage = placeholdImage;
+    _placeholderImage = placeholderImage;
     
     [self scrollSubViewCreate];
 }
@@ -582,6 +596,24 @@ static inline CGFloat viewHeight(UIView *view)
     
     [self.m_loopSubViewArray enumerateObjectsUsingBlock:^(DMImageLoopSubView *subView, NSUInteger idx, BOOL *stop) {
         subView.contentMode = imageViewContentMode;
+    }];
+}
+
+- (void)setTitleVerticalAlignment:(UIControlContentVerticalAlignment)titleVerticalAlignment
+{
+    _titleVerticalAlignment = titleVerticalAlignment;
+    
+    [self.m_loopSubViewArray enumerateObjectsUsingBlock:^(DMImageLoopSubView *subView, NSUInteger idx, BOOL *stop) {
+        subView.titleVerticalAlignment = titleVerticalAlignment;
+    }];
+}
+
+- (void)setTitleHeight:(CGFloat)titleHeight
+{
+    _titleHeight = titleHeight;
+    
+    [self.m_loopSubViewArray enumerateObjectsUsingBlock:^(DMImageLoopSubView *subView, NSUInteger idx, BOOL *stop) {
+        subView.titleHeight = titleHeight;
     }];
 }
 

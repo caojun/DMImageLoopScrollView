@@ -24,6 +24,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class DMImageLoopScrollView;
 
 /**
@@ -49,9 +51,9 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
 #pragma mark - DMImageLoopScrollViewDelegate
 @protocol DMImageLoopScrollViewDelegate <NSObject>
 
-
 @optional
--(void)imageLoopScrollView:(DMImageLoopScrollView *)view didClickIndex:(NSInteger)index;
+-(void)imageLoopScrollView:(nonnull DMImageLoopScrollView *)view
+             didClickIndex:(NSInteger)index;
 
 @end
 
@@ -64,9 +66,9 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
 /**
  *  占位图片
  */
-@property (nonatomic, strong) UIImage *placeholdImage;
+@property (nonnull, nonatomic, strong) UIImage *placeholderImage;
 
-@property (nonatomic, strong) UIImage *titleBackgroundImage;
+@property (nonnull, nonatomic, strong) UIImage *titleBackgroundImage;
 
 /**
  *  滚动时间为秒, 默认3秒, < 0 表示不滚动
@@ -76,7 +78,7 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
 /**
  *  imageArray 可存放UIImage / NSURL
  */
-@property (nonatomic, strong) NSArray *imageParamArray;
+@property (nonnull, nonatomic, strong) NSArray *imageParamArray;
 
 
 /**
@@ -87,16 +89,16 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
 /**
  *  图片 title array
  */
-@property (nonatomic, strong) NSArray *titleArray;
+@property (nonnull, nonatomic, strong) NSArray *titleArray;
 
 /**
  *  title 字体
  */
-@property (nonatomic, strong) UIFont *titleFont;
+@property (nonnull, nonatomic, strong) UIFont *titleFont;
 /**
  *  title 颜色
  */
-@property (nonatomic, strong) UIColor *titleColor;
+@property (nonnull, nonatomic, strong) UIColor *titleColor;
 
 /**
  *  当前页
@@ -118,22 +120,28 @@ typedef NS_ENUM(NSInteger, DMImageLoopPageControlAlignment)
  */
 @property (nonatomic, assign, getter=isHiddenPageControl) BOOL hiddenPageControl;
 
-+ (instancetype)imageLoopScrollView;
-+ (instancetype)imageLoopScrollViewWithImageParamArray:(NSArray *)array
-                                         andTitleArray:(NSArray *)titleArray
-                                     andPlaceholdImage:(UIImage *)placeholImage;
+/// 垂直对齐方式
+@property (nonatomic, assign) UIControlContentVerticalAlignment titleVerticalAlignment;
+@property (nonatomic, assign) CGFloat titleHeight;
 
-- (instancetype)initWithImageParamArray:(NSArray *)array
-                          andTitleArray:(NSArray *)titleArray
-                      andPlaceholdImage:(UIImage *)placeholdImage;
++ (instancetype)imageLoopScrollView;
++ (instancetype)imageLoopScrollViewWithImageParamArray:(nullable NSArray *)array
+                                         andTitleArray:(nullable NSArray *)titleArray
+                                   andPlaceholderImage:(nullable UIImage *)placeholderImage;
+
+- (instancetype)initWithImageParamArray:(nullable NSArray *)array
+                          andTitleArray:(nullable NSArray *)titleArray
+                    andPlaceholderImage:(nullable UIImage *)placeholderImage;
 
 - (instancetype)initWithFrame:(CGRect)frame
-           andImageParamArray:(NSArray *)array
-                andTitleArray:(NSArray *)titleArray
-            andPlaceholdImage:(UIImage *)placeholderImage;
+           andImageParamArray:(nullable NSArray *)array
+                andTitleArray:(nullable NSArray *)titleArray
+          andPlaceholderImage:(nullable UIImage *)placeholderImage;
 
-- (void)setImageParamArray:(NSArray *)imageParamArray
-             andTitleArray:(NSArray *)titleArray
-         andPlaceholdImage:(UIImage *)placeholdImage;
+- (void)setImageParamArray:(nullable NSArray *)imageParamArray
+             andTitleArray:(nullable NSArray *)titleArray
+       andPlaceholderImage:(nullable UIImage *)placeholderImage;
 
 @end
+
+NS_ASSUME_NONNULL_END

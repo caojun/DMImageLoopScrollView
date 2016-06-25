@@ -27,9 +27,9 @@
 
 @interface DMImageLoopSubView ()
 
-@property (nonatomic, strong) UIImageView *m_bottomBackgroundView;
-@property (nonatomic, strong) UILabel *m_titleLabel;
-@property (nonatomic, strong) UIImage *m_placeholdImage;
+@property (nonnull, nonatomic, strong) UIImageView *m_bottomBackgroundView;
+@property (nonnull, nonatomic, strong) UILabel *m_titleLabel;
+@property (nonnull, nonatomic, strong) UIImage *m_placeholdImage;
 
 @end
 
@@ -40,6 +40,8 @@
 @synthesize titleBackgroundImage = _titleBackgroundImage;
 @synthesize titleAlignment = _titleAlignment;
 @synthesize titleColor = _titleColor;
+@synthesize titleVerticalAlignment = _titleVerticalAlignment;
+@synthesize titleHeight = _titleHeight;
 
 
 #pragma mark - Life Cycle
@@ -54,7 +56,7 @@
     return [[self alloc] init];
 }
 
-+ (instancetype)imageLoopSubViewWithImageParam:(id)imageParam andTitle:(NSString *)title andTitleBackgroundImage:(UIImage *)backgroundImage andPlaceholdImage:(UIImage *)placeholdImage
++ (instancetype)imageLoopSubViewWithImageParam:(nonnull id)imageParam andTitle:(nonnull NSString *)title andTitleBackgroundImage:(nonnull UIImage *)backgroundImage andPlaceholdImage:(nonnull UIImage *)placeholdImage
 {
     DMImageLoopSubView *subView = [self imageLopSubView];
     
@@ -92,8 +94,10 @@
 {
     self.clipsToBounds = YES;
     
+    _titleHeight = 30;
     [self bottomBackgroundViewCreate];
     [self titleLabelCreate];
+    _titleVerticalAlignment = UIControlContentVerticalAlignmentBottom;
 }
 
 - (void)layoutSubviews
@@ -142,9 +146,28 @@
     if (nil != self.m_bottomBackgroundView)
     {
         CGFloat w = CGRectGetWidth(self.bounds);
-        CGFloat h = 30;
+        CGFloat h = _titleHeight;
         CGFloat x = 0;
-        CGFloat y = CGRectGetHeight(self.bounds) - h;
+        CGFloat y = 0;
+        
+        if (UIControlContentVerticalAlignmentCenter == self.titleVerticalAlignment)
+        {
+            y = (self.bounds.size.height - h) / 2;
+        }
+        else if (UIControlContentVerticalAlignmentTop == self.titleVerticalAlignment)
+        {
+            y = 0;
+        }
+        else if (UIControlContentVerticalAlignmentBottom == self.titleVerticalAlignment)
+        {
+            y = CGRectGetHeight(self.bounds) - h;
+        }
+        else if (UIControlContentVerticalAlignmentFill == self.titleVerticalAlignment)
+        {
+            y = 0;
+            h = self.bounds.size.height;
+        }
+
         CGRect frame = {x, y, w, h};
         
         self.m_bottomBackgroundView.frame = frame;
@@ -255,6 +278,22 @@
     _titleBackgroundImage = titleBackgroundImage;
     
     self.m_bottomBackgroundView.image = titleBackgroundImage;
+}
+
+- (void)setTitleVerticalAlignment:(UIControlContentVerticalAlignment)titleVerticalAlignment
+{
+    _titleVerticalAlignment = titleVerticalAlignment;
+    
+    [self bottomBackgroundViewAdjustFrame];
+    [self titleLabelAdjustFrame];
+}
+
+- (void)setTitleHeight:(CGFloat)titleHeight
+{
+    _titleHeight = titleHeight;
+    
+    [self bottomBackgroundViewAdjustFrame];
+    [self titleLabelAdjustFrame];
 }
 
 

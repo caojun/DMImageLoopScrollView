@@ -26,17 +26,19 @@
     NSArray *imageParamArray = @[url, url, url, url];
     NSArray *titleArray = @[@"唐嫣0", @"唐嫣1", @"唐嫣2", @"唐嫣3"];
     
-    DMImageLoopScrollView *loopView = [DMImageLoopScrollView imageLoopScrollViewWithImageParamArray:imageParamArray andTitleArray:titleArray andPlaceholdImage:nil];
-    loopView.frame = (CGRect){0, CGRectGetHeight(self.view.bounds) / 2, CGRectGetWidth(self.view.bounds) / 4 * 3, CGRectGetHeight(self.view.bounds) / 2};
+    DMImageLoopScrollView *loopView = [DMImageLoopScrollView imageLoopScrollViewWithImageParamArray:imageParamArray andTitleArray:titleArray andPlaceholderImage:nil];
+    loopView.frame = (CGRect){0, CGRectGetHeight(self.view.bounds) / 2, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) / 2};
     loopView.delegate = self;
     loopView.titleColor = [UIColor redColor];
     [self.view addSubview:loopView];
-    
-    
+    loopView.titleHeight = 40;
+    loopView.titleVerticalAlignment = UIControlContentVerticalAlignmentTop;
+    loopView.titleBackgroundImage = [UIImage imageNamed:@"title_bg"];
+
     UIImage *image = [UIImage imageNamed:@"1.jpg"];
     imageParamArray = @[image, image, image, image];
     titleArray = @[@"赵丽颖0", @"赵丽颖1", @"赵丽颖2", @"赵丽颖3"];
-    [self.m_loopView setImageParamArray:imageParamArray andTitleArray:titleArray andPlaceholdImage:nil];
+    [self.m_loopView setImageParamArray:imageParamArray andTitleArray:titleArray andPlaceholderImage:nil];
     self.m_loopView.imageLoopPageControlAlignment = DMImageLoopPageControlAlignmentLeft;
     self.m_loopView.titleColor = [UIColor orangeColor];
     self.m_loopView.imageLoopTitleHorAlignment = NSTextAlignmentRight;
