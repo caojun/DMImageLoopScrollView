@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "DMImageLoopScrollView"
   s.version      = "0.0.9"
-  s.summary      = ""
+  s.summary      = "图片自动滚动显示控件"
 
   s.description  = <<-DESC
                    A longer description of DMImageLoopScrollView in Markdown format.
