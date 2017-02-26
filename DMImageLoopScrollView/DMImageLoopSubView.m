@@ -24,6 +24,7 @@
 
 #import "DMImageLoopSubView.h"
 #import "UIImageView+WebCache.h"
+#import <UIView+WebCache.h>
 
 @interface DMImageLoopSubView ()
 
